@@ -94,6 +94,10 @@ public class GAC extends JavaPlugin {
             }
         }, this);
 
+        // Merge missing config keys from defaults (keeps existing values intact)
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
         CheckConfig.init(this);
         gui = new GACGUI();
         new PacketManager(this);
