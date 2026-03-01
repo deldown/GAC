@@ -4,3 +4,8 @@ target/
 .idea/
 .DS_Store
 logs/
+.claude/
+*.log
+*.py
+cloud-server/gac.jar
+cloud-server/plugins/
