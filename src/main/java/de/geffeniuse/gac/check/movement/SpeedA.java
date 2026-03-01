@@ -203,9 +203,14 @@ public class SpeedA extends Check {
     }
 
     private double calculateMaxSpeed(Player player) {
-        // If in air, sneaking doesn't slow you down (physics wise you have momentum)
+        // If in air, apply speed effect + use BASE_AIR as base
         if (!isOnGround(player)) {
-             return BASE_SPRINT * BUFFER; 
+            double airMax = BASE_AIR;
+            PotionEffect speed = player.getPotionEffect(PotionEffectType.SPEED);
+            if (speed != null) {
+                airMax *= 1.0 + (speed.getAmplifier() + 1) * SPEED_EFFECT_MULT;
+            }
+            return airMax * BUFFER;
         }
 
         double maxSpeed = BASE_WALK;
