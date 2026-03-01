@@ -1,0 +1,44 @@
+name: GAC
+version: 1.1
+main: de.geffeniuse.gac.GAC
+api-version: 1.21
+depend: [ProtocolLib]
+authors: [Geffeniuse]
+description: Advanced Packet-Based Combat Anticheat
+commands:
+  gac:
+    description: Main command for GAC
+    usage: /gac
+  ban:
+    description: Ban a player
+    usage: /ban <player> [reason]
+    permission: gac.admin
+  tempban:
+    description: Temporarily ban a player
+    usage: /tempban <player> <time> [reason]
+    permission: gac.admin
+  unban:
+    description: Unban a player
+    usage: /unban <player>
+    permission: gac.admin
+  kick:
+    description: Kick a player
+    usage: /kick <player> [reason]
+    permission: gac.admin
+  mute:
+    description: Mute a player
+    usage: /mute <player> [reason]
+    permission: gac.admin
+  tempmute:
+    description: Temporarily mute a player
+    usage: /tempmute <player> <time> [reason]
+    permission: gac.admin
+  unmute:
+    description: Unmute a player
+    usage: /unmute <player>
+    permission: gac.admin
+  gaccloud:
+    description: GAC Cloud ML status and management
+    usage: /gaccloud [status|player <name>]
+    permission: gac.admin
+    aliases: [gcloud]

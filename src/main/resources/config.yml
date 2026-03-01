@@ -1,0 +1,66 @@
+# GAC Configuration
+# Geffeniuse AntiCheat
+
+# ==================== GAC Cloud ML ====================
+# The ML system provides confidence-based mitigations only.
+# It does NOT kick or ban players - it subtly degrades cheat effectiveness.
+#
+# Philosophy:
+# - ML learns normal behavior patterns (unsupervised)
+# - Classic checks provide weak/hard labels for training
+# - Cross-server learning via GAC Cloud
+# - Asymmetric, subtle mitigations (reach reduction, hit-reg loss, etc.)
+# - Goal: Make cheats useless without giving feedback to cheaters
+
+cloud:
+  # Your server's API key (contact GAC team to get one)
+  api-key: ""
+
+  # Unique server ID (will be assigned with your API key)
+  server-id: ""
+
+  # Send training data to improve ML models globally
+  contribute-training: true
+
+# ==================== Mitigation Settings ====================
+# These control how aggressively GAC mitigates suspected cheaters
+
+mitigation:
+  # Combat mitigations
+  combat:
+    # Max reach reduction (0.0 - 1.0, e.g., 0.3 = 30% reduced reach)
+    max-reach-reduction: 0.4
+    # Max hit registration loss chance
+    max-hitreg-loss: 0.5
+
+  # Movement mitigations
+  movement:
+    # Max speed reduction
+    max-speed-reduction: 0.3
+    # Rubber-band intensity
+    setback-intensity: 0.7
+
+  # Scaffold/Block mitigations
+  scaffold:
+    # Ghost block chance (block disappears after placing)
+    max-ghost-block-rate: 0.6
+    # Delayed break chance
+    max-delayed-break-rate: 0.4
+
+# ==================== General Settings ====================
+
+general:
+  # Debug mode (shows extra info to admins)
+  debug: false
+
+  # Minimum TPS to run checks (below this, checks are relaxed)
+  min-tps: 18.0
+
+  # Alert cooldown per player in ms
+  alert-cooldown: 3000
+
+# ==================== Update Settings ====================
+update:
+  # Direct download URL — wird automatisch von GitHub Releases bedient.
+  # Immer auf die neueste Version zeigen:
+  url: "https://github.com/deldown/GAC/releases/latest/download/GAC.jar"

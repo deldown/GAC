@@ -1,0 +1,15 @@
+[Unit]
+Description=GAC Cloud Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/gac-ml
+Environment=PORT=8080
+ExecStart=/opt/gac-ml/venv/bin/python /opt/gac-ml/main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

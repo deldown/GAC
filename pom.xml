@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.geffeniuse</groupId>
+    <artifactId>gac</artifactId>
+    <version>1.1</version>
+    <packaging>jar</packaging>
+
+    <name>GAC</name>
+    <description>Geffeniuse Anticheat - Advanced Packet-Based Combat Solution</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <!-- Spigot API -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <!-- ProtocolLib -->
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/repository/public/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-snapshots</id>
+            <url>https://repo.dmulloy2.net/repository/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Spigot API (using 1.21.10 for modern features, adjust as needed) -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- ProtocolLib (Packet Injection) -->
+        <dependency>
+            <groupId>net.dmulloy2</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>5.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Lombok (for cleaner code) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ProGuard Obfuscation DISABLED due to remapper issues -->
+            <!--
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardVersion>7.4.1</proguardVersion>
+                    <injar>${project.build.finalName}.jar</injar>
+                    <outjar>${project.build.finalName}-obf.jar</outjar>
+                    <obfuscate>true</obfuscate>
+                    <options>
+                        <option>-keep public class de.geffeniuse.gac.GAC { *; }</option>
+                        <option>-keep public class de.geffeniuse.gac.command.GACCommand { *; }</option>
+                        <option>-keep public class de.geffeniuse.gac.config.CheckConfig { *; }</option>
+                        <option>-keep public class de.geffeniuse.gac.cloud.** { public *; }</option>
+                        <option>-keepclassmembers class * { @org.bukkit.event.EventHandler *; }</option>
+                        <option>-keepclassmembers class * extends com.comphenix.protocol.events.PacketAdapter { *; }</option>
+                        <option>-repackageclasses ''</option>
+                        <option>-allowaccessmodification</option>
+                        <option>-overloadaggressively</option>
+                        <option>-dontoptimize</option>
+                        <option>-dontwarn org.bukkit.**</option>
+                        <option>-dontwarn com.comphenix.**</option>
+                        <option>-dontwarn lombok.**</option>
+                        <option>-dontwarn com.google.**</option>
+                        <option>-dontwarn java.util.logging.**</option>
+                        <option>-dontwarn javax.**</option>
+                        <option>-dontwarn java.**</option>
+                        <option>-dontwarn io.netty.**</option>
+                        <option>-dontnote de.geffeniuse.gac.**</option>
+                    </options>
+                    <libs>
+                        <lib>${java.home}/jmods/java.base.jmod</lib>
+                        <lib>${java.home}/jmods/java.logging.jmod</lib>
+                        <lib>${java.home}/jmods/java.desktop.jmod</lib>
+                    </libs>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.guardsquare</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>7.4.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.guardsquare</groupId>
+                        <artifactId>proguard-core</artifactId>
+                        <version>9.1.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+</project>

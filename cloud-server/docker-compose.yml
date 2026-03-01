@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  gac-cloud:
+    build: .
+    container_name: gac-cloud
+    ports:
+      - "17865:17865"
+    environment:
+      - PORT=17865
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
